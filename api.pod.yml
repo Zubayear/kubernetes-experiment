@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: golang-api
+  labels:
+    app: web
+    rel: stable
+spec:
+  containers:
+    - name: golang-api
+      image: zubayear/kubernetes-experiment:1.0.0
+      ports:
+        - containerPort: 8080
+# kubectl create -f dark.pod.yml --save-config
+# kubectl describe pod [pod-name]
+# kubectl apply -f dark.pod.yml
+# kubectl exec [pod-name] -i -t -- sh
+# kubectl edit -f dark.pod.yml
+# kubectl delete -f dark.pod.yml
