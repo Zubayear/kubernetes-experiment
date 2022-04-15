@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+# Metadata about the Deployment
+metadata:
+  name: hello-api-deployment
+  labels:
+    type: api
+spec:
+  # replicas: 2
+  # Selector is used to select the template to use (based on labels)
+  selector:
+    matchLabels:
+      type: api
+  # Template to use to create the Pod/Containers (selector matches the label)
+  template:
+    metadata:
+      labels:
+        type: api
+    # Pod Spec
+    spec:
+      containers:
+        - name: hello-api
+          image: zubayear/kubernetes-experiment:1.0.0
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8080
+# kubectl create -f api.deployment.yml --save-config
+# kubectl get all
+# kubectl get deployment
+# kubectl describe deployments
+# kubectl describe deployment hello-api-deployment
+# kubectl get deployments --show-labels
+# kubectl delete -f api.deployment.yml
+# kubectl apply -f api.deployment.yml
+# kubectl scale -f api.deployment.yml --replicas=5
